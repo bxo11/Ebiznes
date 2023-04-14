@@ -1,10 +1,13 @@
 version: "3.8"
+name: e-biznes
 services:
   python:
+    container_name: python
     build:
       context: .
       dockerfile: Dockerfile-python
   java:
+    container_name: java
     build:
       context: .
       dockerfile: Dockerfile-java

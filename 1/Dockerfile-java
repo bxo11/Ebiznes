@@ -4,8 +4,7 @@ RUN apt update
 RUN apt upgrade -y
 
 # Java install
-COPY Connect.java .
-
+COPY demo .
 RUN apt install wget unzip zip curl -y
 
 # Java
@@ -13,12 +12,10 @@ RUN apt install openjdk-8-jdk -y
 
 # Kotlin
 RUN curl -s https://get.sdkman.io | bash
-RUN source "$HOME/.sdkman/bin/sdkman-init.sh"
-RUN sdk install kotlin
+RUN /bin/bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install kotlin" 
 
 # Gradle
 RUN wget -c https://services.gradle.org/distributions/gradle-8.1-bin.zip -P /tmp
 RUN mkdir /opt/gradle
 RUN unzip -d /opt/gradle /tmp/gradle-8.1-bin.zip
 RUN export PATH=$PATH:/opt/gradle/gradle-8.1/bin
-
