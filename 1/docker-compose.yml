@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile-python
+  java:
+    build:
+      context: .
+      dockerfile: Dockerfile-java
