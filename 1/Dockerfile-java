@@ -4,7 +4,6 @@ RUN apt update
 RUN apt upgrade -y
 
 # Java install
-COPY demo .
 RUN apt install wget unzip zip curl -y
 
 # Java
@@ -18,4 +17,9 @@ RUN /bin/bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install kotlin"
 RUN wget -c https://services.gradle.org/distributions/gradle-8.1-bin.zip -P /tmp
 RUN mkdir /opt/gradle
 RUN unzip -d /opt/gradle /tmp/gradle-8.1-bin.zip
-RUN export PATH=$PATH:/opt/gradle/gradle-8.1/bin
+ENV PATH $PATH:/opt/gradle/gradle-8.1/bin
+
+COPY demo demo
+WORKDIR demo
+
+CMD ["gradle", "run"]
