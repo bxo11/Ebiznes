@@ -1,0 +1,17 @@
+GET     /category                      controllers.CategoryController.getAll
+GET     /category/:itemId              controllers.CategoryController.getById(itemId: Long)
+PUT     /category                      controllers.CategoryController.put
+DELETE  /category/:itemId              controllers.CategoryController.deleteById(itemId: Long)
+POST    /category                      controllers.CategoryController.addNewItem
+
+GET     /product                       controllers.ProductController.getAll
+GET     /product/:itemId               controllers.ProductController.getById(itemId: Long)
+PUT     /product                       controllers.ProductController.put
+DELETE  /product/:itemId               controllers.ProductController.deleteById(itemId: Long)
+POST    /product                       controllers.ProductController.addNewItem
+
+GET     /order/user/:userId            controllers.OrderController.getOrderForUser(userId: Long)
+GET     /order/:itemId                 controllers.OrderController.getById(itemId: Long)
+PUT     /order                         controllers.OrderController.put
+DELETE  /order/:itemId                 controllers.OrderController.deleteById(itemId: Long)
+POST    /order                         controllers.OrderController.addNewItem
