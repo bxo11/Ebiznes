@@ -1,0 +1,19 @@
+version: "3.8"
+name: e-biznes
+services:
+  scala-play-rest-api:
+    container_name: scala-play-rest-api
+    build:
+      context: .
+      dockerfile: Dockerfile-rest-api
+    ports:
+      - "9000:9000"
+  ngrok:
+    image: ngrok/ngrok:latest
+    ports:
+      - "4040:4040"
+    environment:
+      - NGROK_AUTHTOKEN=<your_auth_token>
+    command:
+      - "http"
+      - "scala-play-rest-api:9000"

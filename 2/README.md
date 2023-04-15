@@ -1,0 +1,1 @@
+Docker Compose requires setting the NGROK_AUTHTOKEN variable with a token from your account.
