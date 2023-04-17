@@ -1,4 +1,4 @@
-![example](https://github.com/bxo11/example.png)
+![example](https://github.com/bxo11/Ebiznes/blob/e5734814dead79af38c0ba0f7cdbe228a9679fdf/3/example.png)
 
 # Discord Bot Documentation
 
