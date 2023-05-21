@@ -4,6 +4,7 @@ import (
 	"awesomeProject/endpoints"
 	"awesomeProject/models"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"log"
@@ -23,6 +24,11 @@ func main() {
 
 	// Create a new Echo instance
 	e := echo.New()
+
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"*"},
+		AllowHeaders: []string{echo.HeaderContentType},
+	}))
 
 	// Initialize the endpoints with the database connection
 	endpoints.InitProductEndpoints(db, e)
