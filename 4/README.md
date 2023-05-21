@@ -1,6 +1,3 @@
-
-# API Endpoints
-
 1. ```sql
    INSERT INTO categories (name) VALUES
    ('Category 1'),
@@ -21,8 +18,9 @@
     ('Product 8', 18, 5),
     ('Product 9', 22, 4),
     ('Product 10', 35, 3);
-```
+   ```
 
+# API Endpoints
 ## Get Product by ID
 
 - **Endpoint**: `/products/:id`
