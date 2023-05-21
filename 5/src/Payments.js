@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function Payments(props) {
+  const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState('');
+  const cart = props.cart;
 
   const handlePayment = () => {
       fetch('http://localhost:8080/carts', {
@@ -12,12 +15,12 @@ function Payments(props) {
         body: JSON.stringify({
             "Name": "Cart for test user",
             "Description": "Uer cart",
-            "Products": props.cart
+            "Products": cart
           })
        }
         )
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => navigate('/'))
         .catch(error => console.error('Error:', error));
 
   };
@@ -36,7 +39,7 @@ function Payments(props) {
           <option value="PayPal">PayPal</option>
         </select>
       </label>
-      <button onClick={handlePayment}>Pay</button>
+      <button onClick={handlePayment} disabled={cart.length === 0}>Pay</button>
     </div>
   );
 }
