@@ -2,14 +2,14 @@ package endpoints
 
 import (
 	"awesomeProject/models"
-	"fmt"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 	"net/http"
 	"strconv"
 )
 
-const cartEndpoint = "carts"
+const cartEndpoint = "/carts"
+const cartIdEndpoint = "/carts/:id"
 const invalidCartMessage = "Invalid cart ID"
 
 // Get a cart by ID
@@ -103,8 +103,8 @@ func InitCartEndpoints(database *gorm.DB, e *echo.Echo) {
 
 	// Define the routes
 
-	e.GET(fmt.Sprintf("/%s/:id", cartEndpoint), getCart)
-	e.POST(fmt.Sprintf("/%s", cartEndpoint), createCart)
-	e.PUT(fmt.Sprintf("/%s/:id", cartEndpoint), updateCart)
-	e.DELETE(fmt.Sprintf("/%s/:id", cartEndpoint), deleteCart)
+	e.GET(cartIdEndpoint, getCart)
+	e.POST(cartEndpoint, createCart)
+	e.PUT(cartIdEndpoint, updateCart)
+	e.DELETE(cartIdEndpoint, deleteCart)
 }

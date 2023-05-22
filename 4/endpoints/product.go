@@ -2,14 +2,14 @@ package endpoints
 
 import (
 	"awesomeProject/models"
-	"fmt"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 	"net/http"
 	"strconv"
 )
 
-const productEndpoint = "products"
+const productEndpoint = "/products"
+const productIdEndpoint = "/products/:id"
 const invalidProductMessage = "Invalid product ID"
 
 var db *gorm.DB
@@ -19,11 +19,11 @@ func InitProductEndpoints(database *gorm.DB, e *echo.Echo) {
 	db = database
 
 	// Define the routes
-	e.GET(fmt.Sprintf("/%s", productEndpoint), getAllProducts) // New route to get all products
-	e.GET(fmt.Sprintf("/%s/:id", productEndpoint), getProduct)
-	e.POST(fmt.Sprintf("/%s", productEndpoint), createProduct)
-	e.PUT(fmt.Sprintf("/%s/:id", productEndpoint), updateProduct)
-	e.DELETE(fmt.Sprintf("/%s/:id", productEndpoint), deleteProduct)
+	e.GET(productEndpoint, getAllProducts) // New route to get all products
+	e.GET(productIdEndpoint, getProduct)
+	e.POST(productEndpoint, createProduct)
+	e.PUT(productIdEndpoint, updateProduct)
+	e.DELETE(productIdEndpoint, deleteProduct)
 }
 
 // Get a product by ID
