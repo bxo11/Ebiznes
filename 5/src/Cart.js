@@ -4,8 +4,9 @@ import classes from './ProductList.module.css';
 import Payments from './Payments';
 
 const generateKey = (product) => {
-  // Generate a random string of characters
-  const randomString = Math.random().toString(36).substring(7);
+  const crypto = window.crypto || window.msCrypto;
+  var array = new Uint32Array(1);
+  const randomString = crypto.getRandomValues(array);
   return `${product.ID}_${randomString}`;
 };
 
