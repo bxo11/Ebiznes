@@ -1,2 +1,5 @@
 - Github repository - https://github.com/bxo11/Ebiznes-sonarcloud
 - Sonarcloud analysis - https://sonarcloud.io/project/overview?id=bxo11_Ebiznes-sonarcloud
+- [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=bxo11_Ebiznes-sonarcloud&metric=bugs)](https://sonarcloud.io/summary/new_code?id=bxo11_Ebiznes-sonarcloud)
+- [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=bxo11_Ebiznes-sonarcloud&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=bxo11_Ebiznes-sonarcloud)
+- [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=bxo11_Ebiznes-sonarcloud&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=bxo11_Ebiznes-sonarcloud)
