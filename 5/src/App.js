@@ -1,7 +1,6 @@
 import Products from "./ProductList";
-import Product from "./Product";
 import Cart from "./Cart";
-import { loader as productLoader } from './Product';
+import Product, { loader as productLoader } from './Product';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 const router = createBrowserRouter([

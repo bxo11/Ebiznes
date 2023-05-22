@@ -2,18 +2,22 @@ package endpoints
 
 import (
 	"awesomeProject/models"
+	"fmt"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 	"net/http"
 	"strconv"
 )
 
+const cartEndpoint = "carts"
+const invalidCartMessage = "Invalid cart ID"
+
 // Get a cart by ID
 func getCart(c echo.Context) error {
 	// Get the cart ID from the request parameters
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Invalid cart ID")
+		return echo.NewHTTPError(http.StatusBadRequest, invalidCartMessage)
 	}
 
 	// Find the cart in the database
@@ -50,7 +54,7 @@ func updateCart(c echo.Context) error {
 	// Get the cart ID from the request parameters
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Invalid cart ID")
+		return echo.NewHTTPError(http.StatusBadRequest, invalidCartMessage)
 	}
 
 	// Find the cart in the database
@@ -80,7 +84,7 @@ func deleteCart(c echo.Context) error {
 	// Get the cart ID from the request parameters
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Invalid cart ID")
+		return echo.NewHTTPError(http.StatusBadRequest, invalidCartMessage)
 	}
 
 	// Delete the cart from the database
@@ -98,8 +102,9 @@ func InitCartEndpoints(database *gorm.DB, e *echo.Echo) {
 	db = database
 
 	// Define the routes
-	e.GET("/carts/:id", getCart)
-	e.POST("/carts", createCart)
-	e.PUT("/carts/:id", updateCart)
-	e.DELETE("/carts/:id", deleteCart)
+
+	e.GET(fmt.Sprintf("/%s/:id", cartEndpoint), getCart)
+	e.POST(fmt.Sprintf("/%s", cartEndpoint), createCart)
+	e.PUT(fmt.Sprintf("/%s/:id", cartEndpoint), updateCart)
+	e.DELETE(fmt.Sprintf("/%s/:id", cartEndpoint), deleteCart)
 }

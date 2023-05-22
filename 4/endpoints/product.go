@@ -2,11 +2,15 @@ package endpoints
 
 import (
 	"awesomeProject/models"
+	"fmt"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 	"net/http"
 	"strconv"
 )
+
+const productEndpoint = "products"
+const invalidProductMessage = "Invalid product ID"
 
 var db *gorm.DB
 
@@ -15,11 +19,11 @@ func InitProductEndpoints(database *gorm.DB, e *echo.Echo) {
 	db = database
 
 	// Define the routes
-	e.GET("/products", getAllProducts) // New route to get all products
-	e.GET("/products/:id", getProduct)
-	e.POST("/products", createProduct)
-	e.PUT("/products/:id", updateProduct)
-	e.DELETE("/products/:id", deleteProduct)
+	e.GET(fmt.Sprintf("/%s", productEndpoint), getAllProducts) // New route to get all products
+	e.GET(fmt.Sprintf("/%s/:id", productEndpoint), getProduct)
+	e.POST(fmt.Sprintf("/%s", productEndpoint), createProduct)
+	e.PUT(fmt.Sprintf("/%s/:id", productEndpoint), updateProduct)
+	e.DELETE(fmt.Sprintf("/%s/:id", productEndpoint), deleteProduct)
 }
 
 // Get a product by ID
@@ -27,7 +31,7 @@ func getProduct(c echo.Context) error {
 	// Get the product ID from the request parameters
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Invalid product ID")
+		return echo.NewHTTPError(http.StatusBadRequest, invalidProductMessage)
 	}
 
 	// Find the product in the database
@@ -77,7 +81,7 @@ func updateProduct(c echo.Context) error {
 	// Get the product ID from the request parameters
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Invalid product ID")
+		return echo.NewHTTPError(http.StatusBadRequest, invalidProductMessage)
 	}
 
 	// Find the product in the database
@@ -107,7 +111,7 @@ func deleteProduct(c echo.Context) error {
 	// Get the product ID from the request parameters
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, "Invalid product ID")
+		return echo.NewHTTPError(http.StatusBadRequest, invalidProductMessage)
 	}
 
 	// Delete the product from the database

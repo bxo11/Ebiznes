@@ -11,7 +11,7 @@ const location = useLocation();
       <h1>Cart</h1>
       <ul className={classes.list}>
             {cartProducts.map((product, index) => (
-              <li key={index} className={classes.item}>
+              <li key={`${product.ID}_${index}`} className={classes.item}>
                   <div className={classes.content}>
                     <h2>{product.Name}</h2>
                     <h3>{product.Price} $</h3>
