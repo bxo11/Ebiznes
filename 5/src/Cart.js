@@ -5,7 +5,7 @@ import Payments from './Payments';
 
 const generateKey = (product) => {
   const crypto = window.crypto || window.msCrypto;
-  var array = new Uint32Array(1);
+  const array = new Uint32Array(1);
   const randomString = crypto.getRandomValues(array);
   return `${product.ID}_${randomString}`;
 };
