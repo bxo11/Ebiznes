@@ -1,0 +1,81 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f9f9f9;  /* Added a light grey background */
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 80%;
+  width: 80%;  /* Added a width to prevent chat from taking full width */
+  overflow-y: scroll;
+  padding: 20px;
+  border-radius: 10px;  /* Added border radius for a smoother look */
+  background-color: #ffffff;  /* Made chat background white */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Added box shadow for depth */
+}
+
+.user-message {
+  background-color: #007bff;  /* Changed the color to a nice shade of blue */
+  color: white;
+  align-self: flex-end;
+  margin: 10px 0;  /* Increased the margin a bit */
+  padding: 15px;  /* Increased the padding for more space */
+  border-radius: 15px;
+  max-width: 60%;  /* Messages can take a bit more space now */
+  word-wrap: break-word;
+}
+
+.bot-message {
+  background-color: #4caf50;
+  color: white;
+  align-self: flex-start;
+  margin: 10px 0;  /* Increased the margin a bit */
+  padding: 15px;  /* Increased the padding for more space */
+  border-radius: 15px;
+  max-width: 60%;  /* Messages can take a bit more space now */
+  word-wrap: break-word;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;  /* Altered alignment to give more space between elements */
+  align-items: center;
+  width: 80%;  /* Added a width to prevent input from taking full width */
+  height: 10%;  /* Decreased the height to give more space to the chat */
+  padding: 20px;
+  background-color: #ffffff;  /* Made input container background white */
+  border-radius: 10px;  /* Added border radius for a smoother look */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);  /* Added box shadow for depth */
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #4caf50;  /* Made border a bit more noticeable */
+  outline: none;
+}
+
+button {
+  width: 25%;  /* Button can be a bit bigger */
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;  /* Added transition for a smoother hover effect */
+}
+
+button:hover {
+  opacity: 0.8;
+  transform: scale(1.02);  /* Button enlarges slightly when hovered */
+}
