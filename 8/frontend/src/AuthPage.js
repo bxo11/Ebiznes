@@ -22,6 +22,8 @@ export async function action({ request }) {
     password: data.get('password'),
   };
 
+  console.log(`${process.env.REACT_APP_API_BASE_URL}/`);
+
   const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/` + mode, {
     method: 'POST',
     headers: {
