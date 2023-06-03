@@ -1,0 +1,51 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy container app to Azure Web App - ebiznes-backend
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to registry
+      uses: docker/login-action@v2
+      with:
+        registry: https://ebizneskk.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_c9ac5441312644ab9154cb3716447067 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_af9ec5bae9b5437ea80ab5b499433066 }}
+
+    - name: Build and push container image to registry
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_c9ac5441312644ab9154cb3716447067 }}/ebizneskk/backend:${{ github.sha }}
+        file: ./Dockerfile
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'ebiznes-backend'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0050ad502e994210ab62e9ca03f00380 }}
+        images: 'ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_c9ac5441312644ab9154cb3716447067 }}/ebizneskk/backend:${{ github.sha }}'
