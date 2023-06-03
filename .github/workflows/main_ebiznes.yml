@@ -32,13 +32,6 @@ jobs:
         push: true
         tags: ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f80cb4bf60474e2fbb66bbc799c5a6c4 }}/frontend:${{ github.sha }}
         file: ./8/Dockerfile-frontend
-        
-    - name: Build and push backend image to registry
-      uses: docker/build-push-action@v3
-      with:
-        push: true
-        tags: ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f80cb4bf60474e2fbb66bbc799c5a6c4 }}/backend:${{ github.sha }}
-        file: ./8/Dockerfile-backend
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,12 +50,3 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_a6850e26fa6f481b8a9e36f2e7f37462 }}
         images: 'ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f80cb4bf60474e2fbb66bbc799c5a6c4 }}/frontend:${{ github.sha }}'
-        
-    - name: Deploy backend to Azure Web App
-      id: deploy-backend-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-          app-name: 'ebiznes-backend'
-          slot-name: 'production'
-          publish-profile: 'ebiznes-backend.scm.azurewebsites.net:443'
-          images: 'ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f80cb4bf60474e2fbb66bbc799c5a6c4 }}/backend:${{ github.sha }}'
