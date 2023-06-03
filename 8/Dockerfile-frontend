@@ -1,5 +1,5 @@
 FROM node:18
-COPY /frontend /frontend
+COPY ./frontend /frontend
 WORKDIR /frontend
 RUN npm install
 EXPOSE 3000
