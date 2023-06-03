@@ -5,7 +5,7 @@ import {
     useActionData,
     useNavigation,
   } from 'react-router-dom';
-  
+  import classes from './AuthForm.module.css';
   
   function AuthForm() {
     const data = useActionData();
@@ -17,7 +17,7 @@ import {
   
     return (
       <>
-        <Form method="post" >
+        <Form method="post" className={classes.form}>
           <h1>{isLogin ? 'Log in' : 'Create a new user'}</h1>
           {data && data.errors && (
             <ul>
