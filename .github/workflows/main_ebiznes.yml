@@ -48,11 +48,21 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
+    
+    - name: Deploy frontend to Azure Web App
+      id: deploy-frontend-to-webapp
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'ebiznes'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_a6850e26fa6f481b8a9e36f2e7f37462 }}
         images: 'ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f80cb4bf60474e2fbb66bbc799c5a6c4 }}/frontend:${{ github.sha }}'
+        
+    - name: Deploy backend to Azure Web App
+      id: deploy-backend-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+          app-name: 'ebiznes-backend'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_a6850e26fa6f481b8a9e36f2e7f37462 }}
+          images: 'ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_07c0ca5e50164a29afb75a14eaa65ecc }}/backend:${{ github.sha }}'
