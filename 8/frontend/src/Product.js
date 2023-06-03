@@ -8,7 +8,7 @@ const Product = () => {
     const { productId } = useParams()
 
     useEffect(() => {
-      fetch('http://localhost:8080/products/' +productId, {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/products/` +productId, {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + token

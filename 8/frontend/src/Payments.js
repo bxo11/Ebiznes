@@ -9,7 +9,7 @@ function Payments(props) {
   const token = getAuthToken();
   
   const handlePayment = () => {
-      fetch('http://localhost:8080/carts', {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/carts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -9,7 +9,7 @@ const Products = () => {
     const token = getAuthToken();
 
     useEffect(() => {
-        fetch('http://localhost:8080/products', {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/products`, {
           method: 'GET',
           headers: {
             'Authorization': 'Bearer ' + token
