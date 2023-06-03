@@ -25,6 +25,11 @@ jobs:
         registry: https://ebizneskk.azurecr.io/
         username: ${{ secrets.AzureAppService_ContainerUsername_f80cb4bf60474e2fbb66bbc799c5a6c4 }}
         password: ${{ secrets.AzureAppService_ContainerPassword_0f90f8dddd5e432ea78876e53a222486 }}
+    
+    - name: Create env file
+      run: |
+        touch .env
+        echo REACT_APP_API_BASE_URL=${{ secrets.REACT_APP_API_BASE_URL }} >> .env
 
     - name: Build and push frontend image to registry
       uses: docker/build-push-action@v3
