@@ -64,5 +64,5 @@ jobs:
       with:
           app-name: 'ebiznes-backend'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_a6850e26fa6f481b8a9e36f2e7f37462 }}
+          publish-profile: 'ebiznes-backend - Web Deploy'
           images: 'ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f80cb4bf60474e2fbb66bbc799c5a6c4 }}/backend:${{ github.sha }}'
