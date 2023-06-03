@@ -27,12 +27,14 @@ jobs:
         password: ${{ secrets.AzureAppService_ContainerPassword_0f90f8dddd5e432ea78876e53a222486 }}
 
     - name: Build and push frontend image to registry
+      uses: docker/build-push-action@v3
       with:
         push: true
         tags: ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f80cb4bf60474e2fbb66bbc799c5a6c4 }}/frontend:${{ github.sha }}
         file: ./8/Dockerfile-frontend
         
     - name: Build and push backend image to registry
+      uses: docker/build-push-action@v3
       with:
         push: true
         tags: ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f80cb4bf60474e2fbb66bbc799c5a6c4 }}/backend:${{ github.sha }}
