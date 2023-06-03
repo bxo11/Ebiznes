@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: ebizneskk.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_c9ac5441312644ab9154cb3716447067 }}/ebizneskk/backend:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./8/Dockerfile-backend
 
   deploy:
     runs-on: ubuntu-latest
